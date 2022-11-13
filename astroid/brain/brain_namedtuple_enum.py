@@ -479,6 +479,7 @@ def infer_typing_namedtuple_class(class_node, context=None):
     """
     ).format(typename=class_node.name, fields=",".join(annassigns_fields))
     node = extract_node(code)
+    node.parent = class_node.parent
     try:
         generated_class_node = next(infer_named_tuple(node, context))
     except StopIteration as e:
